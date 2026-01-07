@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Can I Afford This? Calculator</title>
+    <style>
+      :root{
+        --bg:#0b1020;
+        --card:rgba(255,255,255,.07);
+        --border:rgba(255,255,255,.14);
+        --text:#eaf0ff;
+        --muted:rgba(234,240,255,.75);
+        --good:#22c55e;
+        --warn:#f59e0b;
+        --bad:#ef4444;
+        --accent:#7c5cff;
+      }
+      *{box-sizing:border-box}
+      body{
+        margin:0;
+        font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+        color:var(--text);
+        background:
+          radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.25), transparent 55%),
+          radial-gradient(900px 600px at 85% 25%, rgba(34,197,94,.18), transparent 55%),
+          var(--bg);
+        min-height:100vh;
+      }
+      .container{width:min(980px,92vw); margin:0 auto; padding:28px 0 44px;}
+      header{
+        position:sticky; top:0; z-index:10;
+        backdrop-filter: blur(10px);
+        background: rgba(11,16,32,.72);
+        border-bottom:1px solid var(--border);
+      }
+      header .inner{width:min(980px,92vw); margin:0 auto; padding:14px 0; display:flex; align-items:center; justify-content:space-between;}
+      .logo{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;}
+      .dot{width:12px; height:12px; border-radius:999px; background:linear-gradient(135deg, var(--accent), var(--good)); box-shadow:0 0 22px rgba(124,92,255,.45);}
+      .pill{
+        font-size:13px; color:var(--muted);
+        border:1px solid var(--border);
+        background:rgba(255,255,255,.04);
+        padding:6px 10px; border-radius:999px;
+      }
+
+      .grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:18px;}
+      .card{
+        background:var(--card);
+        border:1px solid var(--border);
+        border-radius:18px;
+        padding:18px;
+      }
+      h1{font-size: clamp(28px,3.5vw,40px); line-height:1.05; margin:0 0 8px;}
+      p{margin:0; color:var(--muted); line-height:1.55;}
+      .inputs{display:grid; gap:12px; margin-top:12px;}
+      label{font-size:13px; color:var(--muted); display:block; margin-bottom:6px;}
+      input, select{
+        width:100%;
+        padding:12px 12px;
+        border-radius:14px;
+        border:1px solid var(--border);
+        background: rgba(0,0,0,.18);
+        color:var(--text);
+        outline:none;
+      }
+      input:focus, select:focus{border-color: rgba(124,92,255,.65);}
+      .row{display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+      .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
+      button{
+        border:1px solid var(--border);
+        background: rgba(255,255,255,.06);
+        color:var(--text);
+        padding:10px 14px;
+        border-radius:12px;
+        cursor:pointer;
+        font-weight:650;
+      }
+      button.primary{
+        border:none;
+        background: linear-gradient(135deg, var(--accent), #4f46e5);
+        box-shadow: 0 10px 26px rgba(124,92,255,.22);
+      }
+      button:hover{transform: translateY(-1px); transition:120ms ease;}
+      .resultTop{
+        display:flex; align-items:flex-start; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      }
+      .badge{
+        padding:8px 10px;
+        border-radius:999px;
+        font-weight:800;
+        font-size:13px;
+        border:1px solid var(--border);
+        background: rgba(255,255,255,.05);
+      }
+      .badge.good{border-color:rgba(34,197,94,.45); color:var(--good);}
+      .badge.warn{border-color:rgba(245,158,11,.45); color:var(--warn);}
+      .badge.bad{border-color:rgba(239,68,68,.45); color:var(--bad);}
+      .bigNum{font-size:44px; font-weight:900; letter-spacing:-.5px; margin:8px 0 2px;}
+      .sub{color:var(--muted); font-size:14px;}
+      .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:12px;}
+      .kpi{
+        border:1px solid var(--border);
+        background: rgba(255,255,255,.04);
+        border-radius:16px;
+        padding:12px;
+      }
+      .kpi .v{font-size:18px; font-weight:850;}
+      .kpi .k{font-size:12px; color:var(--muted); margin-top:4px;}
+      .note{
+        margin-top:12px;
+        border-left: 3px solid rgba(124,92,255,.6);
+        padding-left:10px;
+        color:var(--muted);
+        font-size:14px;
+        line-height:1.5;
+      }
+      .barWrap{
+        margin-top:12px;
+        border:1px solid var(--border);
+        border-radius:14px;
+        padding:10px;
+        background: rgba(0,0,0,.14);
+      }
+      .bar{
+        height:12px;
+        border-radius:999px;
+        width:100%;
+        background: rgba(255,255,255,.08);
+        overflow:hidden;
+      }
+      .fill{height:100%; width:0%; border-radius:999px;}
+      .fill.good{background: rgba(34,197,94,.85);}
+      .fill.warn{background: rgba(245,158,11,.85);}
+      .fill.bad{background: rgba(239,68,68,.85);}
+      footer{margin-top:18px; color:var(--muted); font-size:13px;}
+      @media (max-width: 900px){
+        .grid{grid-template-columns:1fr;}
+        .kpis{grid-template-columns:1fr;}
+        .row{grid-template-columns:1fr;}
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <div class="logo"><span class="dot"></span><span>AffordCheck</span></div>
+        <div class="pill">Price + Income → Instant reality check</div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="card">
+        <h1>Can I afford this?</h1>
+        <p>Enter the item price and your income. Optional: add hourly wage + take-home % for a more accurate read.</p>
+      </div>
+
+      <div class="grid">
+        <!-- Inputs -->
+        <section class="card">
+          <h2 style="margin:0 0 6px; font-size:18px;">Inputs</h2>
+          <p style="margin:0 0 10px;">No accounts, no saving. Just math.</p>
+
+          <div class="inputs">
+            <div class="row">
+              <div>
+                <label for="price">Item price ($)</label>
+                <input id="price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g., 250" />
+              </div>
+              <div>
+                <label for="income">Your income amount ($)</label>
+                <input id="income" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g., 900" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="freq">Income frequency</label>
+                <select id="freq">
+                  <option value="weekly">Weekly</option>
+                  <option value="biweekly">Every 2 weeks</option>
+                  <option value="monthly" selected>Monthly</option>
+                  <option value="yearly">Yearly</option>
+                </select>
+              </div>
+              <div>
+                <label for="takehome">Take-home % (optional)</label>
+                <input id="takehome" type="number" inputmode="decimal" min="1" max="100" step="1" placeholder="e.g., 80" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="hourly">Hourly wage (optional)</label>
+                <input id="hourly" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g., 17.50" />
+              </div>
+              <div>
+                <label for="mode">Rule-of-thumb strictness</label>
+                <select id="mode">
+                  <option value="loose">Loose</option>
+                  <option value="normal" selected>Normal</option>
+                  <option value="strict">Strict</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="btns">
+              <button class="primary" id="calcBtn">Calculate</button>
+              <button id="resetBtn">Reset</button>
+              <button id="demoBtn">Demo values</button>
+            </div>
+
+            <div class="note">
+              Tip: If you add take-home %, the site uses your estimated <b>net</b> income. If you don’t, it assumes the income you typed is already net.
+            </div>
+          </div>
+        </section>
+
+        <!-- Results -->
+        <section class="card" aria-live="polite">
+          <div class="resultTop">
+            <div>
+              <h2 style="margin:0; font-size:18px;">Result</h2>
+              <div class="sub" id="resultLine">Enter numbers and hit Calculate.</div>
+            </div>
+            <div class="badge warn" id="badge">Waiting…</div>
+          </div>
+
+          <div class="bigNum" id="percent">—</div>
+          <div class="sub" id="percentLabel">of your selected paycheck</div>
+
+          <div class="barWrap">
+            <div class="sub" style="margin-bottom:8px;">Spend impact</div>
+            <div class="bar">
+              <div class="fill warn" id="fill"></div>
+            </div>
+            <div class="sub" style="margin-top:8px;" id="barText">—</div>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="v" id="netPay">—</div>
+              <div class="k">estimated net pay (for that period)</div>
+            </div>
+            <div class="kpi">
+              <div class="v" id="leftover">—</div>
+              <div class="k">money left after purchase</div>
+            </div>
+            <div class="kpi">
+              <div class="v" id="hours">—</div>
+              <div class="k">hours of work (if hourly given)</div>
+            </div>
+          </div>
+
+          <div class="note" id="advice">
+            We’ll show a simple green/yellow/red verdict plus a “safe spend” estimate based on the strictness you picked.
+          </div>
+
+          <footer>
+            Rules are just heuristics. Real affordability depends on bills, debt, savings goals, and emergencies.
+          </footer>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+
+      function money(n) {
+        if (!Number.isFinite(n)) return "—";
+        return n.toLocaleString(undefined, { style: "currency", currency: "USD" });
+      }
+
+      function clamp(n, min, max) {
+        return Math.max(min, Math.min(max, n));
+      }
+
+      function freqToMonthlyMultiplier(freq) {
+        // Converts a pay-period amount to an approximate monthly amount
+        switch (freq) {
+          case "weekly": return 52 / 12;      // ~4.333
+          case "biweekly": return 26 / 12;    // ~2.167
+          case "monthly": return 1;
+          case "yearly": return 1 / 12;
+          default: return 1;
+        }
+      }
+
+      function thresholds(mode) {
+        // Percent of paycheck thresholds for verdict
+        // Green: <= good, Yellow: <= warn, Red: > warn
+        if (mode === "strict") return { good: 5, warn: 12, safe: 5 };
+        if (mode === "loose")  return { good: 12, warn: 25, safe: 12 };
+        return { good: 8, warn: 18, safe: 8 }; // normal
+      }
+
+      function setBadge(type, text) {
+        const badge = $("badge");
+        badge.className = "badge " + type;
+        badge.textContent = text;
+      }
+
+      function setFill(type, pct) {
+        const fill = $("fill");
+        fill.className = "fill " + type;
+        fill.style.width = `${clamp(pct, 0, 100)}%`;
+      }
+
+      function calculate() {
+        const price = parseFloat($("price").value);
+        const income = parseFloat($("income").value);
+        const freq = $("freq").value;
+        const takehomeRaw = parseFloat($("takehome").value);
+        const hourly = parseFloat($("hourly").value);
+        const mode = $("mode").value;
+
+        if (!Number.isFinite(price) || !Number.isFinite(income) || price < 0 || income <= 0) {
+          $("resultLine").textContent = "Please enter a valid price and income.";
+          setBadge("warn", "Needs info");
+          $("percent").textContent = "—";
+          $("barText").textContent = "—";
+          $("netPay").textContent = "—";
+          $("leftover").textContent = "—";
+          $("hours").textContent = "—";
+          setFill("warn", 0);
+          $("advice").textContent = "Add numbers above to get your affordability verdict.";
+          return;
+        }
+
+        // If takehome % is given, treat income as gross and estimate net.
+        const takehomePct = Number.isFinite(takehomeRaw) ? clamp(takehomeRaw, 1, 100) / 100 : null;
+        const netIncomePeriod = takehomePct ? income * takehomePct : income;
+
+        const pctOfPaycheck = (price / netIncomePeriod) * 100;
+        const leftover = netIncomePeriod - price;
+
+        // Work hours calculation:
+        let hoursText = "—";
+        if (Number.isFinite(hourly) && hourly > 0) {
+          const hours = price / hourly;
+          hoursText = `${hours.toFixed(hours < 10 ? 1 : 0)} hrs`;
+        }
+
+        // Heuristic "safe spend"
+        const t = thresholds(mode);
+        const safeSpend = netIncomePeriod * (t.safe / 100);
+
+        // Verdict
+        let verdictType = "good";
+        let verdictText = "Looks reasonable";
+        if (pctOfPaycheck > t.warn) {
+          verdictType = "bad";
+          verdictText = "Probably a bad idea right now";
+        } else if (pctOfPaycheck > t.good) {
+          verdictType = "warn";
+          verdictText = "Borderline — think twice";
+        }
+
+        // UI updates
+        $("resultLine").textContent =
+          `Based on your ${freq} pay (${takehomePct ? `${Math.round(takehomePct*100)}% take-home` : "no take-home %"}).`;
+
+        setBadge(verdictType, verdictText);
+
+        $("percent").textContent = `${pctOfPaycheck.toFixed(pctOfPaycheck < 10 ? 1 : 0)}%`;
+        $("netPay").textContent = money(netIncomePeriod);
+        $("leftover").textContent = money(leftover);
+        $("hours").textContent = hoursText;
+
+        const barPct = clamp(pctOfPaycheck, 0, 100);
+        setFill(verdictType, barPct);
+
+        $("barText").textContent = `${money(price)} is ${pctOfPaycheck.toFixed(1)}% of your paycheck.`;
+
+        const monthly = netIncomePeriod * freqToMonthlyMultiplier(freq);
+        const monthlySafe = monthly * (t.safe / 100);
+
+        const extra =
+          `Rule-of-thumb (${mode}): try to keep “wants” purchases under ~${t.safe}% of your paycheck.
+Safe spend (this paycheck): ${money(safeSpend)}.
+Approx safe spend per month: ${money(monthlySafe)} (estimate).`;
+
+        const nuance =
+          leftover < 0
+            ? "You’d go negative on this paycheck. That’s a hard no unless you’re using savings intentionally."
+            : leftover < netIncomePeriod * 0.1
+              ? "You’d have very little left after buying this. Make sure essentials (bills/food/gas) are covered."
+              : "If your essentials are covered and you’re not missing savings goals, this is more doable.";
+
+        $("advice").textContent = `${nuance} ${extra}`;
+      }
+
+      function resetAll() {
+        ["price","income","takehome","hourly"].forEach(id => $(id).value = "");
+        $("freq").value = "monthly";
+        $("mode").value = "normal";
+        $("resultLine").textContent = "Enter numbers and hit Calculate.";
+        setBadge("warn", "Waiting…");
+        $("percent").textContent = "—";
+        $("barText").textContent = "—";
+        $("netPay").textContent = "—";
+        $("leftover").textContent = "—";
+        $("hours").textContent = "—";
+        setFill("warn", 0);
+        $("advice").textContent = "We’ll show a simple green/yellow/red verdict plus a “safe spend” estimate based on the strictness you picked.";
+      }
+
+      function demo() {
+        $("price").value = "250";
+        $("income").value = "900";
+        $("freq").value = "biweekly";
+        $("takehome").value = "80";
+        $("hourly").value = "18";
+        $("mode").value = "normal";
+        calculate();
+      }
+
+      $("calcBtn").addEventListener("click", calculate);
+      $("resetBtn").addEventListener("click", resetAll);
+      $("demoBtn").addEventListener("click", demo);
+
+      // Auto-calc when pressing Enter in inputs
+      ["price","income","takehome","hourly"].forEach(id => {
+        $(id).addEventListener("keydown", (e) => {
+          if (e.key === "Enter") calculate();
+        });
+      });
+    </script>
+  </body>
+</html>
