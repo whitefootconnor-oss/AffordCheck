@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cincy Wizard Washing | Pressure Washing in Cincinnati, OH</title>
+  <meta name="description" content="Cincy Wizard Washing provides professional pressure washing for houses, driveways, decks, fences, and commercial properties in the Cincinnati area. Fast quotes. Quality results." />
+  <meta name="keywords" content="pressure washing Cincinnati, power washing Cincinnati, house washing, driveway cleaning, deck cleaning, soft wash" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cincy Wizard Washing | Pressure Washing in Cincinnati, OH" />
+  <meta property="og:description" content="Professional pressure washing for homes and businesses. Fast quotes. Quality results." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#121a2b;
+      --text:#e7ecf5;
+      --muted:#b7c1d8;
+      --line:rgba(231,236,245,.12);
+      --accent:#5eead4;
+      --accent2:#60a5fa;
+      --danger:#fb7185;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1000px 600px at 20% -10%, rgba(96,165,250,.25), transparent 50%),
+                  radial-gradient(900px 500px at 85% 0%, rgba(94,234,212,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+    }
+    .logo{
+      width:42px; height:42px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(94,234,212,.9), rgba(96,165,250,.85));
+      display:grid; place-items:center;
+      box-shadow: var(--shadow);
+      flex:0 0 auto;
+    }
+    .logo svg{width:22px; height:22px}
+    .brand strong{font-size:16px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--muted)}
+
+    .navlinks{display:flex; gap:14px; align-items:center}
+    .navlinks a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
+      padding:10px 10px;
+      border-radius:12px;
+    }
+    .navlinks a:hover{color:var(--text); background:rgba(255,255,255,.05)}
+
+    .ctaRow{display:flex; gap:10px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      border-radius:14px;
+      padding:11px 14px;
+      text-decoration:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight:600;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .btn:hover{background: rgba(255,255,255,.07)}
+    .btn.primary{
+      border-color: rgba(94,234,212,.35);
+      background: linear-gradient(135deg, rgba(94,234,212,.18), rgba(96,165,250,.12));
+    }
+    .btn.primary:hover{border-color: rgba(94,234,212,.55)}
+    .btn.call{border-color: rgba(96,165,250,.35)}
+
+    /* Hero */
+    .hero{
+      padding:54px 0 20px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:24px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; padding-top:34px}
+      .navlinks{display:none}
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      border:1px solid var(--line);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+    }
+    .pill b{color:var(--text)}
+
+    h1{
+      margin:14px 0 10px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.8px;
+    }
+    @media (max-width: 520px){h1{font-size:36px}}
+    .sub{
+      color:var(--muted);
+      font-size:16px;
+      max-width:60ch;
+    }
+    .heroBtns{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+
+    .card{
+      background: rgba(18,26,43,.75);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* Quote card */
+    .quote{
+      padding:18px;
+    }
+    .quote h2{margin:0 0 6px; font-size:18px}
+    .quote p{margin:0 0 12px; color:var(--muted); font-size:13px}
+
+    form{display:grid; gap:10px}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width: 520px){.grid2{grid-template-columns:1fr}}
+
+    label{font-size:12px; color:var(--muted)}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(231,236,245,.14);
+      background: rgba(11,18,32,.55);
+      color:var(--text);
+      outline:none;
+    }
+    input:focus, select:focus, textarea:focus{border-color: rgba(94,234,212,.55)}
+    textarea{min-height:96px; resize:vertical}
+
+    .smallnote{font-size:12px; color:var(--muted); margin-top:8px}
+
+    /* Sections */
+    section{padding:28px 0}
+    .sectionTitle{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+      margin-bottom:14px;
+    }
+    .sectionTitle h3{margin:0; font-size:22px}
+    .sectionTitle p{margin:0; color:var(--muted); font-size:14px}
+
+    .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    @media (max-width: 900px){.grid3{grid-template-columns:1fr}}
+
+    .feature{padding:16px}
+    .feature h4{margin:10px 0 6px; font-size:16px}
+    .feature p{margin:0; color:var(--muted); font-size:14px}
+
+    .icon{
+      width:40px; height:40px; border-radius:14px;
+      display:grid; place-items:center;
+      border:1px solid rgba(231,236,245,.14);
+      background: rgba(255,255,255,.03);
+    }
+    .icon svg{width:20px; height:20px}
+
+    /* Gallery */
+    .gallery{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
+    @media (max-width: 900px){.gallery{grid-template-columns:1fr}}
+    .ph{
+      border-radius: var(--radius);
+      border:1px dashed rgba(231,236,245,.18);
+      background: rgba(255,255,255,.03);
+      min-height:160px;
+      display:grid;
+      place-items:center;
+      color:var(--muted);
+      text-align:center;
+      padding:18px;
+    }
+
+    /* Testimonials */
+    .testGrid{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
+    @media (max-width: 900px){.testGrid{grid-template-columns:1fr}}
+    blockquote{margin:0; padding:16px}
+    blockquote p{margin:0 0 10px; color:var(--text)}
+    blockquote footer{color:var(--muted); font-size:13px}
+
+    /* Footer */
+    footer{padding:26px 0 34px; border-top:1px solid var(--line); color:var(--muted)}
+    .foot{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap}
+    .foot a{color:var(--muted)}
+    .foot a:hover{color:var(--text)}
+
+    /* Mobile floating call button */
+    .floatCall{
+      position:fixed; right:18px; bottom:18px; z-index:60;
+      display:none;
+    }
+    @media (max-width: 900px){
+      .floatCall{display:block}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sticky nav -->
+  <div class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 14c1.2 2.4 3.2 3.8 5 3.8S15.8 16.4 17 14" stroke="rgba(11,18,32,.95)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M12 3c5 0 9 4 9 9 0 5-4 9-9 9-5 0-9-4-9-9" stroke="rgba(11,18,32,.95)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M8.2 9.2l1.6 1.6M15.8 9.2l-1.6 1.6" stroke="rgba(11,18,32,.95)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Cincy Wizard Washing</strong>
+          <span>Pressure Washing • Cincinnati, OH</span>
+        </div>
+      </a>
+
+      <div class="navlinks" aria-label="Site">
+        <a href="#services">Services</a>
+        <a href="#gallery">Before/After</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#areas">Service Area</a>
+        <a href="#quote">Get a Quote</a>
+      </div>
+
+      <div class="ctaRow">
+        <!-- TODO: Replace with the real phone number -->
+        <a class="btn call" href="tel:+15135551234" aria-label="Call Cincy Wizard Washing">
+          📞 Call
+        </a>
+        <a class="btn primary" href="#quote">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+    <!-- HERO -->
+    <div class="hero">
+      <div>
+        <div class="pill">⭐ Fast quotes • ✅ Quality work • 🧼 Residential & Commercial</div>
+        <h1>Pressure Washing That Makes It Look New Again.</h1>
+        <p class="sub">
+          Cincy Wizard Washing helps homeowners and businesses around Cincinnati keep their properties clean with
+          safe, professional pressure washing and soft washing.
+        </p>
+
+        <div class="heroBtns">
+          <a class="btn primary" href="#quote">Get a Fast Quote</a>
+          <!-- TODO: Replace with the real phone number -->
+          <a class="btn" href="tel:+15135551234">Call (513) 555‑1234</a>
+          <!-- Optional: text button if you use a business texting line -->
+          <a class="btn" href="#quote">Request Text Back</a>
+        </div>
+
+        <p class="smallnote">Same‑week availability varies by season. Estimates are free.</p>
+      </div>
+
+      <!-- Quote form card -->
+      <aside class="card quote" id="quote">
+        <h2>Get a Free Quote</h2>
+        <p>Fill this out and we’ll reply ASAP (usually within 24 hours).</p>
+
+        <!--
+          HOW TO MAKE THIS FORM WORK:
+          Option A (easiest): use Formspree and set action="https://formspree.io/f/XXXXXXX"
+          Option B: Netlify Forms (if hosting on Netlify) — add netlify attribute and keep method="POST".
+          Option C: connect to Google Forms / Zapier.
+        -->
+        <form method="POST" action="#" onsubmit="return handleSubmit(event)">
+          <div class="grid2">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" autocomplete="tel" placeholder="(513) 555-1234" required />
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div>
+              <label for="email">Email (optional)</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" />
+            </div>
+            <div>
+              <label for="service">Service</label>
+              <select id="service" name="service" required>
+                <option value="">Select one…</option>
+                <option>House Wash (Soft Wash)</option>
+                <option>Driveway & Sidewalk</option>
+                <option>Deck / Fence</option>
+                <option>Patio / Pavers</option>
+                <option>Commercial</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="address">Address / Area</label>
+            <input id="address" name="address" autocomplete="street-address" placeholder="Neighborhood or address" required />
+          </div>
+
+          <div>
+            <label for="details">Details</label>
+            <textarea id="details" name="details" placeholder="What needs cleaned? Any timing preference?" ></textarea>
+          </div>
+
+          <button class="btn primary" type="submit">Send Request</button>
+          <div class="smallnote" id="formNote">No spam. We only use this to respond to your quote request.</div>
+        </form>
+      </aside>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="sectionTitle">
+        <div>
+          <h3>Services</h3>
+          <p>Clean, safe, and done right.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="card feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 21h10" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 3v12" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 7l4-4 4 4" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4>House Washing (Soft Wash)</h4>
+          <p>Safer on siding and finishes, great for algae and grime.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 16h16" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 16V8h12v8" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 12h8" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Driveways & Sidewalks</h4>
+          <p>Lift years of buildup to boost curb appeal instantly.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 20V6" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M20 20V6" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 10h16" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 14h16" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Decks, Fences & Patios</h4>
+          <p>Restore outdoor spaces and prep surfaces for staining or sealing.</p>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="grid3">
+        <div class="card feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 20V9l6-5 6 5v11" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9.5 20v-6h5v6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4>Roof & Gutter Cleaning</h4>
+          <p>Ask about safe options for roof staining and gutter brightening.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 17h16" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 17V7h12v10" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 7l4-3 4 3" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4>Commercial Washing</h4>
+          <p>Storefronts, sidewalks, dumpster pads, small lots, and more.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3v18" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 7c2 2 4 3 6 3s4-1 6-3" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 17c2-2 4-3 6-3s4 1 6 3" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Seasonal Specials</h4>
+          <p>Spring cleanups, summer maintenance, and fall prep — just ask.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="sectionTitle">
+        <div>
+          <h3>Before & After</h3>
+          <p>Drop in your photos and this section becomes a lead machine.</p>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <div class="ph">Before/After Photo #1<br/><small>(replace this box with an image)</small></div>
+        <div class="ph">Before/After Photo #2<br/><small>(replace this box with an image)</small></div>
+        <div class="ph">Before/After Photo #3<br/><small>(replace this box with an image)</small></div>
+      </div>
+
+      <p class="smallnote">Tip: use real jobs from Cincinnati neighborhoods — it builds trust fast.</p>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="sectionTitle">
+        <div>
+          <h3>Customer Reviews</h3>
+          <p>Replace these with real reviews (Google / Facebook / texted testimonials).</p>
+        </div>
+      </div>
+
+      <div class="testGrid">
+        <div class="card"><blockquote>
+          <p>“Driveway looks brand new. Super easy to schedule and great communication.”</p>
+          <footer>— Customer in Cincinnati</footer>
+        </blockquote></div>
+        <div class="card"><blockquote>
+          <p>“Quick quote, showed up on time, and the house wash turned out perfect.”</p>
+          <footer>— Homeowner</footer>
+        </blockquote></div>
+        <div class="card"><blockquote>
+          <p>“Professional, affordable, and the results were insane.”</p>
+          <footer>— Repeat customer</footer>
+        </blockquote></div>
+      </div>
+    </section>
+
+    <!-- SERVICE AREA + MAP -->
+    <section id="areas">
+      <div class="sectionTitle">
+        <div>
+          <h3>Service Area</h3>
+          <p>Cincinnati + surrounding areas. Ask if you’re nearby.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="card feature">
+          <h4 style="margin:0 0 8px">Common Areas</h4>
+          <p style="margin:0; color:var(--muted)">
+            West Side • Downtown • NKY • Anderson • Blue Ash • West Chester • Mason • Harrison • Cleves
+          </p>
+          <p class="smallnote">(Edit this list to match your real service range.)</p>
+        </div>
+        <div class="card feature" style="grid-column: span 2;">
+          <h4 style="margin:0 0 8px">Find Us</h4>
+          <p style="margin:0 0 10px; color:var(--muted)">Add your Google Map embed here.</p>
+          <div class="ph" style="min-height:140px">Google Map Embed Placeholder</div>
+          <p class="smallnote">Tip: Google Business Profile + this page = more calls.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section>
+      <div class="card" style="padding:18px">
+        <div class="sectionTitle" style="margin-bottom:8px">
+          <div>
+            <h3 style="margin:0">Ready to get it cleaned?</h3>
+            <p style="margin:0">Free estimates. Quick scheduling.</p>
+          </div>
+          <div class="heroBtns" style="margin:0">
+            <a class="btn primary" href="#quote">Get a Quote</a>
+            <!-- TODO: Replace with the real phone number -->
+            <a class="btn" href="tel:+15135551234">Call Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>
+          <strong style="color:var(--text)">Cincy Wizard Washing</strong><br/>
+          <span>Pressure Washing • Cincinnati, OH</span>
+          <div style="height:8px"></div>
+          <!-- TODO: Replace with real info -->
+          <div>Phone: <a href="tel:+15135551234">(513) 555‑1234</a></div>
+          <div>Email: <a href="mailto:quotes@cincywizardwashing.com">quotes@cincywizardwashing.com</a></div>
+        </div>
+        <div>
+          <div><a href="#services">Services</a></div>
+          <div><a href="#reviews">Reviews</a></div>
+          <div><a href="#quote">Get a Quote</a></div>
+        </div>
+        <div>
+          <div style="font-size:12px">© <span id="year"></span> Cincy Wizard Washing. All rights reserved.</div>
+          <div style="font-size:12px">Site built for lead generation and mobile calls.</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Mobile floating call button -->
+  <a class="btn call floatCall" href="tel:+15135551234" aria-label="Call now">📞 Call</a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function handleSubmit(e){
+      e.preventDefault();
+
+      // Basic client-side behavior: creates an email draft using mailto.
+      // Replace with a real form endpoint for production.
+      const data = new FormData(e.target);
+      const subject = encodeURIComponent('Quote Request — Cincy Wizard Washing');
+      const body = encodeURIComponent(
+        `Name: ${data.get('name')}\n`+
+        `Phone: ${data.get('phone')}\n`+
+        `Email: ${data.get('email') || '(not provided)'}\n`+
+        `Service: ${data.get('service')}\n`+
+        `Address/Area: ${data.get('address')}\n`+
+        `Details: ${data.get('details') || ''}`
+      );
+
+      // TODO: replace with real destination email
+      window.location.href = `mailto:quotes@cincywizardwashing.com?subject=${subject}&body=${body}`;
+
+      const note = document.getElementById('formNote');
+      if(note){
+        note.textContent = 'Opening your email app to send the request… If nothing happens, call/text us instead.';
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
